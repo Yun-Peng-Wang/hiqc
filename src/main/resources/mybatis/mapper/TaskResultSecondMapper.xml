@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TaskResultSecondMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.TaskResultSecond">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="score" jdbcType="DOUBLE" property="score" />
+    <result column="task_id" jdbcType="INTEGER" property="taskId" />
+    <result column="score_id" jdbcType="INTEGER" property="scoreId" />
+    <result column="missing_idetity_path" jdbcType="VARCHAR" property="missingIdetityPath" />
+    <result column="missing_idetity_rename" jdbcType="VARCHAR" property="missingIdetityRename" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, score, task_id, score_id, missing_idetity_path, missing_idetity_rename
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task_result_second
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from task_result_second
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.demo.model.TaskResultSecond" useGeneratedKeys="true">
+    insert into task_result_second (score, task_id, score_id, 
+      missing_idetity_path, missing_idetity_rename
+      )
+    values (#{score,jdbcType=DOUBLE}, #{taskId,jdbcType=INTEGER}, #{scoreId,jdbcType=INTEGER}, 
+      #{missingIdetityPath,jdbcType=VARCHAR}, #{missingIdetityRename,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.demo.model.TaskResultSecond" useGeneratedKeys="true">
+    insert into task_result_second
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="score != null">
+        score,
+      </if>
+      <if test="taskId != null">
+        task_id,
+      </if>
+      <if test="scoreId != null">
+        score_id,
+      </if>
+      <if test="missingIdetityPath != null">
+        missing_idetity_path,
+      </if>
+      <if test="missingIdetityRename != null">
+        missing_idetity_rename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="score != null">
+        #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="scoreId != null">
+        #{scoreId,jdbcType=INTEGER},
+      </if>
+      <if test="missingIdetityPath != null">
+        #{missingIdetityPath,jdbcType=VARCHAR},
+      </if>
+      <if test="missingIdetityRename != null">
+        #{missingIdetityRename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.TaskResultSecond">
+    update task_result_second
+    <set>
+      <if test="score != null">
+        score = #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="taskId != null">
+        task_id = #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="scoreId != null">
+        score_id = #{scoreId,jdbcType=INTEGER},
+      </if>
+      <if test="missingIdetityPath != null">
+        missing_idetity_path = #{missingIdetityPath,jdbcType=VARCHAR},
+      </if>
+      <if test="missingIdetityRename != null">
+        missing_idetity_rename = #{missingIdetityRename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.TaskResultSecond">
+    update task_result_second
+    set score = #{score,jdbcType=DOUBLE},
+      task_id = #{taskId,jdbcType=INTEGER},
+      score_id = #{scoreId,jdbcType=INTEGER},
+      missing_idetity_path = #{missingIdetityPath,jdbcType=VARCHAR},
+      missing_idetity_rename = #{missingIdetityRename,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

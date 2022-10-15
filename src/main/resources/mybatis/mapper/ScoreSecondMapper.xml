@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ScoreSecondMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.ScoreSecond">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="score_name" jdbcType="VARCHAR" property="scoreName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, score_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from score_second
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from score_second
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.demo.model.ScoreSecond" useGeneratedKeys="true">
+    insert into score_second (score_name)
+    values (#{scoreName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.demo.model.ScoreSecond" useGeneratedKeys="true">
+    insert into score_second
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scoreName != null">
+        score_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scoreName != null">
+        #{scoreName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.ScoreSecond">
+    update score_second
+    <set>
+      <if test="scoreName != null">
+        score_name = #{scoreName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.ScoreSecond">
+    update score_second
+    set score_name = #{scoreName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

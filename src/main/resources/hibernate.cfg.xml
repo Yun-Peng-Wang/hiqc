@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+
+    <property name="connection.url"><![CDATA[jdbc:mysql://172.20.137.70:18526/hiqc?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai]]></property>
+    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+      <!--    本地-->
+<!--    <property name="connection.url">-->
+<!--      <![CDATA[jdbc:mysql://localhost:3306/hospital?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai]]></property>-->
+<!--    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>-->
+<!--    <property name="hibernate.connection.username">root</property>-->
+<!--    <property name="hibernate.connection.password">123456</property>-->
+
+    <!--hibernate 方言-->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+    <!--打印sql语句-->
+    <property name="hibernate.show_sql">true</property>
+    <!--格式化sql-->
+    <property name="hibernate.format_sql">true</property>
+      <mapping resource="InstitutionEntity.hbm.xml"/>
+      <mapping class="com.example.demo.entity.InstitutionEntity"/>
+      <mapping resource="RoleEntity.hbm.xml"/>
+      <mapping class="com.example.demo.entity.RoleEntity"/>
+      <mapping resource="ScoreSecondEntity.hbm.xml"/>
+      <mapping class="com.example.demo.entity.ScoreSecondEntity"/>
+      <mapping resource="TaskDocumentEntity.hbm.xml"/>
+      <mapping class="com.example.demo.entity.TaskDocumentEntity"/>
+      <mapping resource="TaskFirstEntity.hbm.xml"/>
+      <mapping class="com.example.demo.entity.TaskFirstEntity"/>
+      <mapping resource="TaskRecordSecondEntity.hbm.xml"/>
+      <mapping class="com.example.demo.entity.TaskRecordSecondEntity"/>
+      <mapping resource="TaskResultSecondEntity.hbm.xml"/>
+      <mapping class="com.example.demo.entity.TaskResultSecondEntity"/>
+      <mapping resource="TaskSumEntity.hbm.xml"/>
+      <mapping class="com.example.demo.entity.TaskSumEntity"/>
+<!--      <mapping resource="UserEntity.hbm.xml"/>-->
+<!--      <mapping class="com.example.demo.entity.UserEntity"/>-->
+      <mapping resource="UserRecordEntity.hbm.xml"/>
+      <mapping class="com.example.demo.entity.UserRecordEntity"/>
+    <mapping resource="DocumentFieldEntity.hbm.xml"/>
+    <mapping class="com.example.demo.entity.DocumentFieldEntity"/>
+    <mapping resource="DocumentSumEntity.hbm.xml"/>
+    <mapping class="com.example.demo.entity.DocumentSumEntity"/>
+      <mapping class="com.example.demo.entity.SysUserEntity"/>
+      <mapping resource="SysUserEntity.hbm.xml"/>
+
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

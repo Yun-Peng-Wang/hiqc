@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TaskRecordSecondMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.TaskRecordSecond">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="task_document_id" jdbcType="INTEGER" property="taskDocumentId" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="rename" jdbcType="VARCHAR" property="rename" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="size" jdbcType="DOUBLE" property="size" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, task_document_id, path, rename, upload_time, size
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task_record_second
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from task_record_second
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.demo.model.TaskRecordSecond" useGeneratedKeys="true">
+    insert into task_record_second (task_document_id, path, rename, 
+      upload_time, size)
+    values (#{taskDocumentId,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, #{rename,jdbcType=VARCHAR}, 
+      #{uploadTime,jdbcType=TIMESTAMP}, #{size,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.demo.model.TaskRecordSecond" useGeneratedKeys="true">
+    insert into task_record_second
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskDocumentId != null">
+        task_document_id,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="rename != null">
+        rename,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskDocumentId != null">
+        #{taskDocumentId,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="rename != null">
+        #{rename,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.TaskRecordSecond">
+    update task_record_second
+    <set>
+      <if test="taskDocumentId != null">
+        task_document_id = #{taskDocumentId,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="rename != null">
+        rename = #{rename,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.TaskRecordSecond">
+    update task_record_second
+    set task_document_id = #{taskDocumentId,jdbcType=INTEGER},
+      path = #{path,jdbcType=VARCHAR},
+      rename = #{rename,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      size = #{size,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TaskFirstMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.TaskFirst">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="task_document_id" jdbcType="INTEGER" property="taskDocumentId" />
+    <result column="test_document_num" jdbcType="INTEGER" property="testDocumentNum" />
+    <result column="correct_document_num" jdbcType="INTEGER" property="correctDocumentNum" />
+    <result column="error_document_num" jdbcType="INTEGER" property="errorDocumentNum" />
+    <result column="score" jdbcType="DOUBLE" property="score" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.model.TaskFirst">
+    <result column="content_fields" jdbcType="LONGVARCHAR" property="contentFields" />
+    <result column="missing_fields" jdbcType="LONGVARCHAR" property="missingFields" />
+    <result column="document_text" jdbcType="LONGVARCHAR" property="documentText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, task_document_id, test_document_num, correct_document_num, error_document_num, 
+    score
+  </sql>
+  <sql id="Blob_Column_List">
+    content_fields, missing_fields, document_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from task_first
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from task_first
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.demo.model.TaskFirst" useGeneratedKeys="true">
+    insert into task_first (task_document_id, test_document_num, 
+      correct_document_num, error_document_num, score, 
+      content_fields, missing_fields, document_text
+      )
+    values (#{taskDocumentId,jdbcType=INTEGER}, #{testDocumentNum,jdbcType=INTEGER}, 
+      #{correctDocumentNum,jdbcType=INTEGER}, #{errorDocumentNum,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE}, 
+      #{contentFields,jdbcType=LONGVARCHAR}, #{missingFields,jdbcType=LONGVARCHAR}, #{documentText,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.demo.model.TaskFirst" useGeneratedKeys="true">
+    insert into task_first
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskDocumentId != null">
+        task_document_id,
+      </if>
+      <if test="testDocumentNum != null">
+        test_document_num,
+      </if>
+      <if test="correctDocumentNum != null">
+        correct_document_num,
+      </if>
+      <if test="errorDocumentNum != null">
+        error_document_num,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="contentFields != null">
+        content_fields,
+      </if>
+      <if test="missingFields != null">
+        missing_fields,
+      </if>
+      <if test="documentText != null">
+        document_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskDocumentId != null">
+        #{taskDocumentId,jdbcType=INTEGER},
+      </if>
+      <if test="testDocumentNum != null">
+        #{testDocumentNum,jdbcType=INTEGER},
+      </if>
+      <if test="correctDocumentNum != null">
+        #{correctDocumentNum,jdbcType=INTEGER},
+      </if>
+      <if test="errorDocumentNum != null">
+        #{errorDocumentNum,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="contentFields != null">
+        #{contentFields,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="missingFields != null">
+        #{missingFields,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="documentText != null">
+        #{documentText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.TaskFirst">
+    update task_first
+    <set>
+      <if test="taskDocumentId != null">
+        task_document_id = #{taskDocumentId,jdbcType=INTEGER},
+      </if>
+      <if test="testDocumentNum != null">
+        test_document_num = #{testDocumentNum,jdbcType=INTEGER},
+      </if>
+      <if test="correctDocumentNum != null">
+        correct_document_num = #{correctDocumentNum,jdbcType=INTEGER},
+      </if>
+      <if test="errorDocumentNum != null">
+        error_document_num = #{errorDocumentNum,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="contentFields != null">
+        content_fields = #{contentFields,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="missingFields != null">
+        missing_fields = #{missingFields,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="documentText != null">
+        document_text = #{documentText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.model.TaskFirst">
+    update task_first
+    set task_document_id = #{taskDocumentId,jdbcType=INTEGER},
+      test_document_num = #{testDocumentNum,jdbcType=INTEGER},
+      correct_document_num = #{correctDocumentNum,jdbcType=INTEGER},
+      error_document_num = #{errorDocumentNum,jdbcType=INTEGER},
+      score = #{score,jdbcType=DOUBLE},
+      content_fields = #{contentFields,jdbcType=LONGVARCHAR},
+      missing_fields = #{missingFields,jdbcType=LONGVARCHAR},
+      document_text = #{documentText,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.TaskFirst">
+    update task_first
+    set task_document_id = #{taskDocumentId,jdbcType=INTEGER},
+      test_document_num = #{testDocumentNum,jdbcType=INTEGER},
+      correct_document_num = #{correctDocumentNum,jdbcType=INTEGER},
+      error_document_num = #{errorDocumentNum,jdbcType=INTEGER},
+      score = #{score,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

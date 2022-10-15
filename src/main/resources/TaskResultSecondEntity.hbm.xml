@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.demo.entity.TaskResultSecondEntity" table="task_result_second" schema="hiqc">
+        <id name="id" column="id"/>
+        <property name="score" column="score"/>
+        <property name="taskId" column="task_id"/>
+        <property name="scoreId" column="score_id"/>
+        <property name="missingIdetityPath" column="missing_idetity_path"/>
+        <property name="missingIdetityRename" column="missing_idetity_rename"/>
+    </class>
+</hibernate-mapping>
